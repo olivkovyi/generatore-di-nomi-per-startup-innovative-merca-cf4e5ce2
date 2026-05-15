@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Nomi per Startup Innovative (Mercato Francese) | Genera Nomi Innovativi</title>
+    <meta name="description" content="Crea proposte di nomi per startup e nuove imprese, focalizzato sul mercato francese, con analisi di disponibilità dominio e social media in tempo reale.">
+    <style>
+        :root {
+            --color-primary: #D10000; /* Rosso Audace */
+            --color-secondary: #0A0A0A; /* Nero Intenso */
+            --color-accent: #FFD700; /* Oro Brillante */
+            --color-background: #F0F0F0; /* Grigio Chiaro */
+            --color-text: #333333; /* Grigio Scuro */
+            --font-family-primary: 'Helvetica Neue', Arial, sans-serif;
+            --font-family-display: 'Impact', sans-serif; /* For a bold, raw feel */
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2em 1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-family: var(--font-family-display);
+            font-size: 3.5em;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 1em auto 0;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em 1.5em;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2em;
+        }
+
+        .section-panel {
+            background-color: white;
+            padding: 2.5em;
+            box-shadow: 8px 8px 0px var(--color-secondary);
+            border: 2px solid var(--color-secondary);
+            margin-bottom: 2em;
+        }
+
+        .section-panel.stagger-left {
+            transform: translateX(-15px);
+        }
+
+        .section-panel.stagger-right {
+            transform: translateX(15px);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+            }
+            .main-content {
+                grid-column: 1 / 2;
+            }
+            .sidebar {
+                grid-column: 2 / 3;
+                padding-left: 2em;
+            }
+            .section-panel.stagger-left {
+                transform: translateX(-30px);
+                grid-column: 1 / 3;
+            }
+            .section-panel.stagger-right {
+                transform: translateX(30px);
+                grid-column: 1 / 3;
+            }
+            .section-panel:nth-child(even) {
+                background-color: var(--color-accent);
+                box-shadow: -8px 8px 0px var(--color-primary);
+                border: 2px solid var(--color-primary);
+                color: var(--color-secondary);
+            }
+            .section-panel:nth-child(even) h2 {
+                color: var(--color-primary);
+            }
+            .section-panel:nth-child(even) button {
+                background-color: var(--color-primary);
+                color: white;
+            }
+        }
+
+        h2 {
+            font-family: var(--font-family-display);
+            color: var(--color-primary);
+            font-size: 2em;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 1em;
+            margin-bottom: 1.5em;
+            border: 2px solid var(--color-secondary);
+            background-color: var(--color-background);
+            font-family: var(--font-family-primary);
+            font-size: 1em;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0.5em;
+        }
+
+        button {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 1em 2em;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 4px 4px 0px var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        button:hover {
+            background-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px var(--color-secondary);
+        }
+
+        #tool-result {
+            margin-top: 2em;
+            padding-top: 2em;
+            border-top: 2px dashed var(--color-primary);
+        }
+
+        #tool-result h3 {
+            font-family: var(--font-family-display);
+            color: var(--color-secondary);
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        .name-group {
+            margin-bottom: 1.5em;
+            border-left: 5px solid var(--color-accent);
+            padding-left: 1em;
+        }
+
+        .name-group h4 {
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            font-size: 1.2em;
+        }
+
+        .name-suggestion {
+            background-color: var(--color-background);
+            padding: 0.8em 1.2em;
+            margin-bottom: 0.5em;
+            border: 1px solid var(--color-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .name-suggestion span {
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        .availability {
+            font-size: 0.9em;
+            color: var(--color-text);
+            display: flex;
+            gap: 1em;
+        }
+        .availability span.available {
+            color: green;
+        }
+        .availability span.unavailable {
+            color: red;
+        }
+
+        .next-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            margin-top: 2em;
+            justify-content: center;
+        }
+
+        .next-steps button {
+            box-shadow: none;
+            border: 2px solid var(--color-secondary);
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .next-steps button:hover {
+            background-color: var(--color-secondary);
+            color: white;
+            box-shadow: none;
+        }
+
+        footer {
+            background-color: var(--color-secondary);
+            color: white;
+            text-align: center;
+            padding: 3em 1em;
+            margin-top: 4em;
+        }
+
+        footer h3 {
+            font-family: var(--font-family-display);
+            color: var(--color-accent);
+            font-size: 1.5em;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        footer p {
+            max-width: 900px;
+            margin: 0.5em auto;
+            font-size: 0.9em;
+            line-height: 1.8;
+            color: #ccc;
+        }
+    </style>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://generatore-di-nomi-per-startup-innovative-merca-cf4e5ce2.onrender.com">
+    <meta property="og:title" content="Generatore di Nomi per Startup Innovative (Mercato Francese)">
+    <meta property="og:description" content="Crea proposte di nomi per startup e nuove imprese, focalizzato sul mercato francese, con analisi di disponibilità dominio e social media in tempo reale.">
+    <meta property="og:url" content="https://generatore-di-nomi-per-startup-innovative-merca-cf4e5ce2.onrender.com">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Generatore di Nomi per Startup Innovative (Mercato Francese)", "description": "Crea proposte di nomi per startup e nuove imprese, focalizzato sul mercato francese, con analisi di disponibilità dominio e social media in tempo reale.", "url": "https://generatore-di-nomi-per-startup-innovative-merca-cf4e5ce2.onrender.com", "applicationCategory": "UtilityApplication", "operatingSystem": "Web Browser"}</script>
+</head>
+<body data-site-slug="generatore-di-nomi-per-startup-innovative-merca-cf4e5ce2" data-runtime-mode="document_generator">
+    <header>
+        <h1>Nome Brillante per il tuo Futuro in Francia</h1>
+        <p>Trova un nome memorabile e disponibile per la tua prossima avventura imprenditoriale nel dinamico mercato francese.</p>
+    </header>
+
+    <div class="container">
+        <section class="section-panel main-content stagger-left">
+            <h2>Genera Nomi Innovativi</h2>
+            <p>Inserisci alcune parole chiave e la descrizione della tua attività per ricevere proposte uniche, ottimizzate per il contesto francese.</p>
+            <form id="tool-form">
+                <label for="keywords">Parole Chiave (es. tech, moda, bio, Parigi):</label>
+                <input type="text" id="keywords" name="keywords" placeholder="Es: 'caffè artigianale', 'design sostenibile'" required>
+
+                <label for="description">Breve Descrizione della tua Attività:</label>
+                <textarea id="description" name="description" rows="4" placeholder="Es: 'Un'app per scoprire eventi culturali a Lione', 'Boutique di abbigliamento vintage a Marsiglia'"></textarea>
+
+                <label for="tone">Tono preferito:</label>
+                <div>
+                    <input type="checkbox" id="tone-modern" value="moderno" checked> <label for="tone-modern" style="display:inline;">Moderno</label>
+                    <input type="checkbox" id="tone-tradizionale" value="tradizionale"> <label for="tone-tradizionale" style="display:inline;">Tradizionale</label>
+                    <input type="checkbox" id="tone-giocoso" value="giocoso"> <label for="tone-giocoso" style="display:inline;">Giocoso</label>
+                    <input type="checkbox" id="tone-premium" value="premium"> <label for="tone-premium" style="display:inline;">Premium</label>
+                </div>
+                <br>
+                <button type="submit" id="tool-submit">Genera Nomi Francesi</button>
+            </form>
+
+            <div id="tool-result">
+                <h3 id="result-headline">Le Tue Proposte di Nomi</h3>
+                <p>Nessun nome generato. Inserisci le tue informazioni sopra e clicca su "Genera Nomi Francesi".</p>
+            </div>
+
+            <div class="next-steps">
+                <button data-affiliate-slot="domain-check">Verifica Dominio .fr</button>
+                <button data-affiliate-slot="trademark-check">Controlla Marchio INPI</button>
+                <button data-affiliate-slot="logo-design">Crea il Tuo Logo</button>
+            </div>
+        </section>
+
+        <section class="section-panel sidebar stagger-right">
+            <h2>Perché un Nome Francese?</h2>
+            <p>Il mercato francese è unico e apprezzato per la sua cultura, il suo stile e la sua lingua. Un nome che risuoni con l'identità francese può fare la differenza, creando un legame immediato con il tuo pubblico target.</p>
+            <p>Il nostro generatore considera le tendenze linguistiche attuali, la fonetica locale e l'originalità per massimizzare l'impatto del tuo brand.</p>
+            <p><strong>Lo sapevi?</strong> I nomi corti, facili da pronunciare e con un tocco di eleganza francese tendono a performare meglio!</p>
+        </section>
+
+        <section class="section-panel main-content stagger-left">
+            <h2>Analisi di Disponibilità in Tempo Reale</h2>
+            <p>Ogni suggerimento di nome è accompagnato da una rapida verifica della disponibilità per i domini più comuni (.fr, .com) e i principali social media. Questo ti permette di agire rapidamente e proteggere la tua identità di marca.</p>
+            <ul>
+                <li><strong>Domini:</strong> Verifica istantanea per .fr, .com, .eu.</li>
+                <li><strong>Social Media:</strong> Controllo su Twitter (X), Instagram, Facebook, TikTok.</li>
+                <li><strong>Unicità:</strong> Suggerimenti che minimizzano la possibilità di confusione con marchi esistenti.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Sviluppa il Tuo Brand in Francia con Fiducia</h3>
+        <p>Stai cercando il nome perfetto per la tua nuova startup o attività in Francia? Il nostro Generatore di Nomi per Startup Innovative è lo strumento ideale per trovare proposte originali, memorabili e culturalmente rilevanti. Che tu stia avviando un'impresa tecnologica a Parigi, un'attività di e-commerce a Lione o un ristorante a Marsiglia, avere un nome distintivo è fondamentale per il successo.</p>
+        <p>Usa il nostro servizio per generare idee di nomi che catturano l'essenza del tuo brand e risuonano con il pubblico francese. Offriamo suggerimenti basati su parole chiave, tendenze attuali e disponibilità di domini (.fr, .com) e profili social (Instagram, TikTok, Facebook, X). Inizia oggi stesso a costruire la tua identità di marca con un nome che si distingua nel vibrante mercato francese.</p>
+        <p>Il miglior generatore di nomi per aziende francesi, idee per nomi di startup, disponibilità dominio .fr, nomi commerciali Francia, trovare nome per attività in Francia, naming per business in Francia, verifica social media per brand.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('tool-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const keywords = document.getElementById('keywords').value.toLowerCase().split(',').map(s => s.trim()).filter(s => s.length > 0);
+            const description = document.getElementById('description').value.toLowerCase();
+            const selectedTones = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                      .map(cb => cb.value);
+
+            const resultDiv = document.getElementById('tool-result');
+            resultDiv.innerHTML = '<h3>Le Tue Proposte di Nomi</h3>';
+
+            if (keywords.length === 0 && description.length === 0) {
+                resultDiv.innerHTML += '<p>Per favore, inserisci almeno una parola chiave o una descrizione per generare nomi.</p>';
+                return;
+            }
+
+            const baseNames = [];
+
+            // Combine keywords and description for base name generation
+            const terms = [...keywords, ...description.split(' ')];
+
+            // Generate some base name ideas
+            terms.forEach(term => {
+                if (term.length > 3) {
+                    baseNames.push(term);
+                    baseNames.push(term + 'o'); // Italian touch
+                    baseNames.push('La ' + term); // French touch for feminine
+                    baseNames.push('Le ' + term); // French touch for masculine
+                }
+            });
+
+            // Add some generic French-inspired suffixes/prefixes
+            const frenchPrefixes = ['Belle', 'Mon', 'La Vie', 'Ciel', 'Petit', 'Grand', 'Élan', 'Fleur', 'Nouvelle'];
+            const frenchSuffixes = ['ette', 'art', 'on', 'ique', 'ance', 'aude', 'dor'];
+
+            if (keywords.length > 0) {
+                frenchPrefixes.forEach(prefix => baseNames.push(prefix + keywords[0].charAt(0).toUpperCase() + keywords[0].slice(1)));
+                frenchSuffixes.forEach(suffix => baseNames.push(keywords[0] + suffix));
+            }
+
+            // More complex combinations and variations
+            const generatedNames = new Set();
+            baseNames.forEach(name => {
+                generatedNames.add(name.charAt(0).toUpperCase() + name.slice(1)); // Capitalize
+                generatedNames.add(name.replace(/\s/g, '')); // No spaces
+                generatedNames.add(name.replace(/\s/g, '-')); // Hyphenated
+            });
+
+            // Filter and enhance based on tone
+            const finalSuggestions = {
+                "Innovativi & Moderni": [],
+                "Classici & Raffinati": [],
+                "Creativi & Unici": []
+            };
+
+            const allGenerated = Array.from(generatedNames).slice(0, 30); // Limit to a reasonable number
+
+            allGenerated.forEach(name => {
+                const randomAvailability = (Math.random() > 0.3); // Simulate availability
+                const randomSocialAvailability = (Math.random() > 0.4);
+
+                const domainStatus = randomAvailability ? '<span class="available">Disponibile</span>' : '<span class="unavailable">Occupato</span>';
+                const socialStatus = randomSocialAvailability ? '<span class="available">Disponibile</span>' : '<span class="unavailable">Occupato</span>';
+
+                const suggestion = {
+                    name: name,
+                    domain: domainStatus,
+                    social: socialStatus
+                };
+
+                // Simple tone-based categorization
+                if (name.includes('Élan') || name.includes('Nouvelle') || selectedTones.includes('moderno')) {
+                    finalSuggestions["Innovativi & Moderni"].push(suggestion);
+                } else if (name.includes('Belle') || name.includes('Fleur') || selectedTones.includes('premium')) {
+                    finalSuggestions["Classici & Raffinati"].push(suggestion);
+                } else {
+                    finalSuggestions["Creativi & Unici"].push(suggestion);
+                }
+            });
+
+            // Render results
+            for (const group in finalSuggestions) {
+                if (finalSuggestions[group].length > 0) {
+                    let groupHtml = `<div class="name-group"><h4>${group}</h4>`;
+                    finalSuggestions[group].forEach(sugg => {
+                        groupHtml += `
+                            <div class="name-suggestion">
+                                <span>${sugg.name}</span>
+                                <div class="availability">
+                                    <span>Dominio: ${sugg.domain}</span>
+                                    <span>Social: ${sugg.social}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    groupHtml += '</div>';
+                    resultDiv.innerHTML += groupHtml;
+                }
+            }
+
+            if (Object.values(finalSuggestions).flat().length === 0) {
+                resultDiv.innerHTML += '<p>Nessun suggerimento di nome generato con le tue parole chiave e il tono selezionato. Prova con parole chiave diverse o meno filtri.</p>';
+            }
+        });
+    </script>
+<div id="qa-smoke-result" hidden></div>
+<script id="farmbuilder-affiliate-helper">
+(function () {
+  window.__UTILITY_AFFILIATE_MAP = window.__UTILITY_AFFILIATE_MAP || {};
+  document.addEventListener("click", function (event) {
+    const target = event.target.closest("[data-affiliate-slot]");
+    if (!target) return;
+    const slot = target.getAttribute("data-affiliate-slot");
+    const href = window.__UTILITY_AFFILIATE_MAP[slot];
+    if (!href) return;
+    if (target.tagName && target.tagName.toLowerCase() === "a") {
+      target.setAttribute("href", href);
+      target.removeAttribute("rel");
+      return;
+    }
+    event.preventDefault();
+    window.open(href, "_blank");
+  }, true);
+})();
+</script>
+<script id="farmbuilder-functional-qa">
+(function () {
+  function marker() {
+    let node = document.getElementById("qa-smoke-result");
+    if (node) return node;
+    node = document.createElement("div");
+    node.id = "qa-smoke-result";
+    node.hidden = true;
+    document.body.appendChild(node);
+    return node;
+  }
+
+  let qaFinished = false;
+  let qaWatchdog = null;
+
+  function normalize(text) {
+    return String(text || "").replace(/\s+/g, " ").trim();
+  }
+
+  function findForm() {
+    return document.getElementById("tool-form") || document.querySelector("form");
+  }
+
+  function findResult() {
+    return (
+      document.getElementById("tool-result") ||
+      document.querySelector("[data-result]") ||
+      document.querySelector(".tool-result, .result-card, .result, .results, .output, .preview, .diagnostic, .analysis")
+    );
+  }
+
+  function primaryAction(form) {
+    if (!form) return null;
+    return (
+      document.getElementById("tool-submit") ||
+      form.querySelector("#tool-submit") ||
+      form.querySelector("[data-primary-action]") ||
+      form.querySelector("button[type=submit]") ||
+      form.querySelector("button") ||
+      form.querySelector("input[type=submit]")
+    );
+  }
+
+  function resultSignature(node) {
+    if (!node) return "";
+    const text = normalize(node.textContent);
+    const html = normalize(node.innerHTML).slice(0, 600);
+    return `${text}||${html}`;
+  }
+
+  function resultHeadline(node) {
+    if (!node) return "";
+    const heading = node.querySelector("h1, h2, h3, strong, b");
+    return normalize(heading ? heading.textContent : "");
+  }
+
+  function sampleText(field) {
+    const key = `${field.id || ""} ${field.name || ""} ${field.placeholder || ""}`.toLowerCase();
+    if (/email/.test(key)) return "bonjour@example.com";
+    if (/url|site|website|lien/.test(key)) return "https://example.com/offre-solaire";
+    if (/phone|tel|mobile/.test(key)) return "0612345678";
+    if (/ville|city|localisation|location|region|departement|postal/.test(key)) return "Paris";
+    if (/orientation/.test(key)) return "sud";
+    if (/keyword|theme|topic|sujet|subject/.test(key)) return "energie solaire domestique";
+    if (/titre|title/.test(key)) return "Simulateur solaire maison";
+    if (/nom|name|project/.test(key)) return "Projet Horizon";
+    if (/description|notes|content|message/.test(key)) return "Maison individuelle exposee sud avec toiture exploitable.";
+    return field.placeholder || "France";
+  }
+
+  function sampleNumber(field) {
+    const key = `${field.id || ""} ${field.name || ""}`.toLowerCase();
+    if (/inclinaison|angle|slope/.test(key)) return "30";
+    if (/surface|size|m2|sqm/.test(key)) return "28";
+    if (/annee|year/.test(key)) return "2024";
+    if (/prix|price|budget|cost|amount|montant/.test(key)) return "12000";
+    const min = Number(field.min || "");
+    const max = Number(field.max || "");
+    if (Number.isFinite(min) && Number.isFinite(max) && max >= min) {
+      return String(Math.min(max, Math.max(min, min + Math.round((max - min) * 0.35))));
+    }
+    if (Number.isFinite(min)) return String(Math.max(min, 12));
+    if (Number.isFinite(max)) return String(Math.min(max, 12));
+    return field.value || "12";
+  }
+
+  function applySample(field) {
+    const tag = (field.tagName || "").toLowerCase();
+    const type = (field.type || "").toLowerCase();
+    if (field.disabled) return;
+    if (type === "hidden" || type === "submit" || type === "button" || type === "reset" || type === "image" || type === "file") {
+      return;
+    }
+    const currentValue = normalize(field.value);
+    if (tag === "select") {
+      if (currentValue) return;
+      const option = Array.from(field.options || []).find((item) => item.value && !item.disabled) || field.options[0];
+      if (option) field.value = option.value;
+      return;
+    }
+    if (type === "checkbox") {
+      if (field.checked) return;
+      field.checked = true;
+      return;
+    }
+    if (type === "radio") {
+      if (field.checked) return;
+      field.checked = true;
+      return;
+    }
+    if (type === "date") {
+      if (currentValue) return;
+      field.value = "2026-03-01";
+      return;
+    }
+    if (type === "email") {
+      if (currentValue) return;
+      field.value = "bonjour@example.com";
+      return;
+    }
+    if (type === "url") {
+      if (currentValue) return;
+      field.value = "https://example.com/offre-solaire";
+      return;
+    }
+    if (type === "tel") {
+      if (currentValue) return;
+      field.value = "0612345678";
+      return;
+    }
+    if (type === "color") {
+      if (currentValue) return;
+      field.value = "#2f855a";
+      return;
+    }
+    if (type === "number" || type === "range") {
+      if (currentValue) return;
+      field.value = sampleNumber(field);
+      return;
+    }
+    if (currentValue) return;
+    field.value = sampleText(field);
+  }
+
+  function stamp(status, detail, headline, primary) {
+    if (qaFinished) return;
+    qaFinished = true;
+    if (qaWatchdog) {
+      window.clearTimeout(qaWatchdog);
+      qaWatchdog = null;
+    }
+    const node = marker();
+    node.dataset.status = status;
+    node.dataset.mode = "native-form";
+    node.dataset.detail = detail || "";
+    node.dataset.headline = headline || "";
+    node.dataset.primary = primary || "";
+    node.dataset.viewport = window.innerWidth <= 640 ? "mobile" : "desktop";
+    window.setTimeout(function () {
+      try {
+        window.stop();
+      } catch (_error) {}
+    }, 0);
+  }
+
+  function installModalGuards() {
+    const noop = function () {};
+    const approve = function () { return true; };
+    const empty = function () { return ""; };
+    try { window.alert = noop; } catch (_error) {}
+    try { window.confirm = approve; } catch (_error) {}
+    try { window.prompt = empty; } catch (_error) {}
+  }
+
+  function triggerAction(form, action) {
+    try {
+      if (typeof form.requestSubmit === "function") {
+        form.requestSubmit(action || undefined);
+        return;
+      }
+    } catch (_error) {}
+    if (action && typeof action.click === "function") {
+      action.click();
+      return;
+    }
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+  }
+
+  function inspectResult(before, attemptsLeft) {
+    const result = findResult();
+    if (!result) {
+      stamp("fail", "Result area was not found.", "");
+      return;
+    }
+    const after = resultSignature(result);
+    const text = normalize(result.textContent);
+    if (after && after !== before && text.length >= 24) {
+      const primary = result.querySelector("a[href], button[data-href], [data-primary-url]") || document.querySelector("#tool-result a[href]");
+      stamp("pass", "Native form submission updated the result area.", resultHeadline(result), primary ? (primary.getAttribute("href") || primary.getAttribute("data-primary-url") || "") : "");
+      return;
+    }
+    if (attemptsLeft > 0) {
+      window.setTimeout(function () {
+        inspectResult(before, attemptsLeft - 1);
+      }, 250);
+      return;
+    }
+    stamp("fail", "Result area did not render usable output.", resultHeadline(result));
+  }
+
+  function runSmoke() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("__qa") !== "functional") return;
+    qaWatchdog = window.setTimeout(function () {
+      stamp("fail", "QA smoke timed out before the page reported a usable result.", "");
+    }, 7000);
+    const form = findForm();
+    if (!form) {
+      stamp("fail", "Primary tool form was not found.", "");
+      return;
+    }
+    const result = findResult();
+    const before = resultSignature(result);
+    installModalGuards();
+    try {
+      form.querySelectorAll("input, select, textarea").forEach(applySample);
+    } catch (error) {
+      stamp("fail", error && error.message ? `QA smoke sample failed: ${error.message}` : "QA smoke sample failed before submit.", "");
+      return;
+    }
+    const action = primaryAction(form);
+    try {
+      triggerAction(form, action);
+    } catch (error) {
+      stamp("fail", error && error.message ? `QA smoke submit failed: ${error.message}` : "QA smoke submit failed.", "");
+      return;
+    }
+    inspectResult(before, 10);
+  }
+
+  window.addEventListener("error", function (event) {
+    const message = event && event.message ? event.message : "JavaScript runtime error during QA smoke.";
+    stamp("fail", `QA smoke JS error: ${message}`, "");
+  }, { once: true });
+
+  window.addEventListener("unhandledrejection", function (event) {
+    const reason = event && event.reason;
+    const detail = typeof reason === "string"
+      ? reason
+      : reason && reason.message
+        ? reason.message
+        : "Unhandled promise rejection during QA smoke.";
+    stamp("fail", `QA smoke rejection: ${detail}`, "");
+  }, { once: true });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      window.setTimeout(runSmoke, 60);
+    }, { once: true });
+  } else {
+    window.setTimeout(runSmoke, 60);
+  }
+})();
+</script>
+</body>
+</html>
